@@ -1,16 +1,16 @@
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const mongoose = require('mongoose');
-const  = require('./House');
+const Note = require('./Notes');
 
 const mongodb = new MongoMemoryServer();
 
 describe('Note model', () => {
     beforeAll(() => {
-      return mongodb.getUri()
-        .then(uri => mongoose.connect(uri, {
-          useUnifiedTopology: true,
-          useNewUrlParser: true
-        }));
+        return mongodb.getUri()
+            .then(uri => mongoose.connect(uri, {
+                useUnifiedTopology: true,
+                useNewUrlParser: true
+            }));
     });
 
     beforeEach(() => {
@@ -19,19 +19,19 @@ describe('Note model', () => {
 
     afterAll(() => {
         return mongoose.connection.close()
-            .then(() => mongodb.stop())
+            .then(() => mongodb.stop());
     });
 
-it('can build a note', () => {
-    return Notes.execute('note')
-        .then(house => {
-            expect(house).toEqual({
-                _id: expect.anything(),
-                text: 'some text'
-            })
-        })
-})
+    it('can build a note', () => {
+        return Note.execute('note')
+            .then(house => {
+                expect(house).toEqual({
+                    _id: expect.anything(),
+                    text: 'some text'
+                });
+            });
+    });
 
 
 
-})
+});
