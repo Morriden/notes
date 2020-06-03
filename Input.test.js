@@ -24,6 +24,3 @@ describe('Input class', () => {
         expect(result).toBeTruthy();
     });
 });
-
-    
-
