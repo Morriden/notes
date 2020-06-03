@@ -1,15 +1,7 @@
-const { parse, isValid } = require('./lib/input');
-const { execute } = require('./lib/notes');
+const Input = require('./Input');
+const Notes = require('./lib/Notes');
 
-//bring execute, valid, and parse functions together.
-// use parse to create and object from process.argv.
-//use valid to check if it is a valid action.
-//if valid execute
-//IF NOT VALID show error.
+let input = new Input(process.argv);
+const isValidInput = input.isValid();
 
-
-
-let parsed = parse(process.argv);
-
-isValid(parsed) ? execute(parsed) : console.log('failure to start');
-
+isValidInput ? Notes.execute(input) : console.log('failure to start');
