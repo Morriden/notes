@@ -1,6 +1,6 @@
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const mongoose = require('mongoose');
-const Note = require('./Notes');
+const Note = require('./lib/Notes');
 
 const mongodb = new MongoMemoryServer();
 
@@ -22,16 +22,16 @@ describe('Note model', () => {
             .then(() => mongodb.stop());
     });
 
-    it('can build a note', () => {
-        return Note.execute('note')
-            .then(house => {
-                expect(house).toEqual({
+    it('can build a note with add', () => {
+        return Note.execute('add')
+            .then(note => {
+                expect(note.toJSON()).toEqual({
                     _id: expect.anything(),
                     text: 'some text'
                 });
             });
     });
 
-
+//MORE TESTS
 
 });
